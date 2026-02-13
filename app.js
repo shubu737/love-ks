@@ -61,48 +61,56 @@ io.on('connection', (socket) => {
   });
 });
 
-// Initialize database
-db.initialize();
+// Initialize database and start server
+(async () => {
+  try {
+    console.log('⏳ Initializing database...');
+    await db.initialize();
+    
+    // Routes (only set up after DB is ready)
+    app.use('/api/auth', authRoutes);
+    app.use('/api/gallery', authMiddleware, galleryRoutes);
+    app.use('/api/stories', authMiddleware, storiesRoutes);
+    app.use('/api/notes', authMiddleware, notesRoutes);
+    app.use('/api/albums', authMiddleware, albumsRoutes);
+    app.use('/api/letters', authMiddleware, lettersRoutes);
+    app.use('/api/bucket', authMiddleware, bucketRoutes);
+    app.use('/api/journal', authMiddleware, journalRoutes);
 
-// Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/gallery', authMiddleware, galleryRoutes);
-app.use('/api/stories', authMiddleware, storiesRoutes);
-app.use('/api/notes', authMiddleware, notesRoutes);
-app.use('/api/albums', authMiddleware, albumsRoutes);
-app.use('/api/letters', authMiddleware, lettersRoutes);
-app.use('/api/bucket', authMiddleware, bucketRoutes);
-app.use('/api/journal', authMiddleware, journalRoutes);
+    // Health check route
+    app.get('/api/health', (req, res) => {
+      res.json({ status: 'ok', message: 'API is running' });
+    });
 
-// Health check route
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', message: 'API is running' });
-});
+    // Serve React build in production
+    if (process.env.NODE_ENV === 'production') {
+      app.use(express.static(path.join(__dirname, 'client/build')));
+      app.get('/*', (req, res) => {
+        res.sendFile(path.join(__dirname, 'client/build/index.html'));
+      });
+    }
 
-// Serve React build in production
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'client/build')));
-  app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/build/index.html'));
-  });
-}
+    // 404 handler
+    app.use((req, res) => {
+      res.status(404).json({ error: 'Route not found' });
+    });
 
-// 404 handler
-app.use((req, res) => {
-  res.status(404).json({ error: 'Route not found' });
-});
+    // Error handler
+    app.use((err, req, res, next) => {
+      console.error(err);
+      res.status(500).json({ error: 'Internal server error' });
+    });
 
-// Error handler
-app.use((err, req, res, next) => {
-  console.error(err);
-  res.status(500).json({ error: 'Internal server error' });
-});
-
-// Start server
-server.listen(PORT, () => {
-  console.log(`\n💕 API Server running on http://localhost:${PORT}`);
-  console.log('🎵 React frontend on http://localhost:3000');
-  console.log('🔌 WebSocket connection available\n');
-});
+    // Start server
+    server.listen(PORT, () => {
+      console.log(`\n💕 API Server running on http://localhost:${PORT}`);
+      console.log('🎵 React frontend on http://localhost:3000');
+      console.log('🔌 WebSocket connection available\n');
+    });
+  } catch (error) {
+    console.error('❌ Failed to initialize database:', error);
+    process.exit(1);
+  }
+})();
 
 module.exports = app;
