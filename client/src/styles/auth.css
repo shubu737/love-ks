@@ -1,0 +1,25 @@
+.auth-body {
+  background: linear-gradient(135deg, #ff6b9d 0%, #d9298b 100%);
+  min-height: 100vh;
+}
+
+.auth-body .romantic-card {
+  box-shadow: 0 10px 40px rgba(217, 41, 139, 0.3);
+}
+
+.romantic-input {
+  border: 2px solid #ffe0f0;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  color: #333;
+}
+
+.romantic-input:focus {
+  border-color: #ff6b9d;
+  box-shadow: 0 0 0 0.2rem rgba(255, 107, 157, 0.25);
+  background-color: #fff;
+}
+
+.romantic-input::placeholder {
+  color: #999;
+}

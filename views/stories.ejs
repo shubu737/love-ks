@@ -1,0 +1,125 @@
+<%- include('fragments/header', { user: user }) %>
+
+<div class="container py-5">
+  <div class="row">
+    <div class="col-lg-10 mx-auto">
+      <div class="mb-5">
+        <h1 class="display-4 mb-2">
+          <i class="fas fa-book-heart" style="color: #ff6b9d;"></i> Our Love Stories
+        </h1>
+        <p class="text-muted">Write down the moments that matter most</p>
+      </div>
+
+      <!-- Create Story Section -->
+      <div class="romantic-card p-4 mb-5">
+        <h4 class="mb-3">
+          <i class="fas fa-pen"></i> Write a New Story
+        </h4>
+        <form id="createStoryForm" class="needs-validation">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="storyTitle" class="form-label">Story Title</label>
+              <input type="text" class="form-control romantic-input" id="storyTitle" name="title" placeholder="e.g., The day we met" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="storyDate" class="form-label">Date</label>
+              <input type="date" class="form-control romantic-input" id="storyDate" name="storyDate">
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="storyContent" class="form-label">Your Story</label>
+            <textarea class="form-control romantic-input" id="storyContent" name="content" rows="5" placeholder="Tell your beautiful love story..." required></textarea>
+          </div>
+          <button type="submit" class="btn romantic-btn btn-lg w-100">
+            <i class="fas fa-heart"></i> Save Story
+          </button>
+        </form>
+      </div>
+
+      <!-- Stories Display -->
+      <div id="storiesContainer">
+        <% if (stories && stories.length > 0) { %>
+          <% stories.forEach(story => { %>
+            <div class="card romantic-card mb-4 story-card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-8">
+                    <h5 class="card-title"><%= story.title %></h5>
+                    <small class="text-muted d-block mb-3">
+                      <i class="fas fa-calendar-heart"></i> <%= story.story_date || 'No date' %>
+                    </small>
+                    <p class="card-text"><%= story.content.substring(0, 200) %>...</p>
+                  </div>
+                  <div class="col-md-4 text-md-end">
+                    <button class="btn btn-sm btn-outline-primary mb-2" onclick="editStory('<%= story.id %>', '<%= story.title %>', '<%= story.story_date %>', '<%= story.content.replace(/'/g, "\\'") %>')">
+                      <i class="fas fa-edit"></i> Edit
+                    </button>
+                    <button class="btn btn-sm btn-outline-danger" onclick="deleteStory(<%= story.id %>)">
+                      <i class="fas fa-trash"></i> Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% }); %>
+        <% } else { %>
+          <div class="text-center p-5 romantic-card">
+            <i class="fas fa-book" style="font-size: 4rem; color: #ddd;"></i>
+            <p class="text-muted mt-3">No stories yet. Start writing your first love story!</p>
+          </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('fragments/footer') %>
+
+<script>
+document.getElementById('createStoryForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const formData = new FormData(this);
+  const data = Object.fromEntries(formData);
+  
+  try {
+    const response = await fetch('/stories/create', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    
+    if (response.ok) {
+      alert('Story saved!');
+      document.getElementById('createStoryForm').reset();
+      location.reload();
+    } else {
+      alert('Error saving story');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Error saving story');
+  }
+});
+
+async function deleteStory(storyId) {
+  if (confirm('Are you sure you want to delete this story?')) {
+    try {
+      const response = await fetch(`/stories/${storyId}`, { method: 'DELETE' });
+      if (response.ok) {
+        alert('Story deleted');
+        location.reload();
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Error deleting story');
+    }
+  }
+}
+
+function editStory(id, title, date, content) {
+  document.getElementById('storyTitle').value = title;
+  document.getElementById('storyDate').value = date;
+  document.getElementById('storyContent').value = content;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>

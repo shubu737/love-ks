@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Our Love Story</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="auth-body">
+  <div class="container d-flex align-items-center justify-content-center min-vh-100">
+    <div class="row w-100">
+      <div class="col-md-6 mx-auto">
+        <div class="card shadow-lg romantic-card">
+          <div class="card-body p-5">
+            <div class="text-center mb-4">
+              <h1 class="display-4 romantic-heart" style="color: #ff6b9d;">
+                <i class="fas fa-heart"></i>
+              </h1>
+              <h2 class="h3 text-dark">Our Love Story</h2>
+              <p class="text-muted">Welcome back to our memories</p>
+            </div>
+
+            <% if (typeof error !== 'undefined' && error) { %>
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <%= error %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              </div>
+            <% } %>
+
+            <% if (typeof registered !== 'undefined' && registered) { %>
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Registration successful! Please log in.
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              </div>
+            <% } %>
+
+            <form method="POST" action="/auth/login" class="needs-validation">
+              <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control romantic-input" id="username" name="username" required>
+              </div>
+              <div class="mb-4">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control romantic-input" id="password" name="password" required>
+              </div>
+              <button type="submit" class="btn btn-lg w-100 romantic-btn">
+                <i class="fas fa-sign-in-alt"></i> Login
+              </button>
+            </form>
+
+            <div class="text-center mt-4">
+              <p class="text-muted">Don't have an account?</p>
+              <a href="/auth/register" class="romantic-link">Create one together</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

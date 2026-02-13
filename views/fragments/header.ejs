@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm sticky-top romantic-nav">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <i class="fas fa-heart" style="color: #ff6b9d;"></i> <strong>Our Love Story</strong>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="/gallery">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="/stories">Stories</a></li>
+        <li class="nav-item"><a class="nav-link" href="/notes">Notes</a></li>
+        <li class="nav-item">
+          <span class="nav-text me-3">Welcome, <%= user.name %>!</span>
+          <a class="nav-link" href="/auth/logout">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

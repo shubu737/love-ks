@@ -1,0 +1,146 @@
+/* Romantic Theme Styling */
+:root {
+  --primary-pink: #ff6b9d;
+  --light-pink: #ffe0f0;
+  --dark-pink: #d9298b;
+  --romantic-red: #e91e63;
+  --light-bg: #fff5f7;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #fff5f7 0%, #ffe0f0 100%);
+  min-height: 100vh;
+}
+
+/* Navigation */
+.romantic-nav {
+  border-bottom: 3px solid var(--primary-pink);
+  background-color: #ffffff !important;
+}
+
+.romantic-nav .navbar-brand {
+  color: var(--primary-pink) !important;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.romantic-nav .nav-link {
+  color: #333 !important;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  margin: 0 5px;
+}
+
+.romantic-nav .nav-link:hover {
+  color: var(--primary-pink) !important;
+}
+
+/* Cards */
+.romantic-card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(255, 107, 157, 0.1);
+  transition: all 0.3s ease;
+  background-color: #ffffff;
+}
+
+.romantic-card:hover {
+  box-shadow: 0 8px 25px rgba(255, 107, 157, 0.15);
+  transform: translateY(-5px);
+}
+
+.card-hover {
+  cursor: pointer;
+}
+
+.photo-img {
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.photo-card:hover .photo-img {
+  transform: scale(1.05);
+}
+
+/* Buttons */
+.romantic-btn {
+  background: linear-gradient(135deg, #ff6b9d 0%, #d9298b 100%);
+  border: none;
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+}
+
+.romantic-btn:hover {
+  background: linear-gradient(135deg, #d9298b 0%, #ff6b9d 100%);
+  color: white;
+  box-shadow: 0 6px 20px rgba(255, 107, 157, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Forms */
+.romantic-input {
+  border: 2px solid #ffe0f0;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.romantic-input:focus {
+  border-color: var(--primary-pink);
+  box-shadow: 0 0 0 0.2rem rgba(255, 107, 157, 0.25);
+}
+
+/* Typography */
+.romantic-title {
+  background: linear-gradient(135deg, #ff6b9d 0%, #d9298b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+.romantic-link {
+  color: var(--primary-pink);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.romantic-link:hover {
+  color: var(--dark-pink);
+  text-decoration: underline;
+}
+
+.romantic-heart {
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.1); }
+  50% { transform: scale(1); }
+}
+
+/* Footer */
+.footer {
+  background-color: #ffffff !important;
+  border-top: 3px solid var(--primary-pink);
+  margin-top: auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .romantic-title {
+    font-size: 2rem;
+  }
+}
+
+.min-vh-100 {
+  min-height: 100vh;
+}

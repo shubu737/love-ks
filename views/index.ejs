@@ -1,0 +1,110 @@
+<%- include('fragments/header', { user: user }) %>
+
+<div class="container py-5">
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <!-- Hero Section -->
+      <div class="text-center mb-5">
+        <h1 class="display-3 romantic-title">
+          <i class="fas fa-heart" style="color: #ff6b9d;"></i> Our Love Story
+        </h1>
+        <p class="lead text-muted">Every moment together is a beautiful memory</p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="row g-3 mb-5">
+        <div class="col-md-4">
+          <a href="/gallery" class="card card-hover romantic-card h-100 text-decoration-none text-dark">
+            <div class="card-body text-center py-4">
+              <i class="fas fa-images" style="font-size: 3rem; color: #ff6b9d;"></i>
+              <h5 class="card-title mt-3">Photo Gallery</h5>
+              <p class="card-text text-muted">Share your beautiful moments together</p>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-4">
+          <a href="/stories" class="card card-hover romantic-card h-100 text-decoration-none text-dark">
+            <div class="card-body text-center py-4">
+              <i class="fas fa-book-heart" style="font-size: 3rem; color: #ff6b9d;"></i>
+              <h5 class="card-title mt-3">Love Stories</h5>
+              <p class="card-text text-muted">Write and cherish your special moments</p>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-4">
+          <a href="/notes" class="card card-hover romantic-card h-100 text-decoration-none text-dark">
+            <div class="card-body text-center py-4">
+              <i class="fas fa-sticky-note" style="font-size: 3rem; color: #ff6b9d;"></i>
+              <h5 class="card-title mt-3">Secret Notes</h5>
+              <p class="card-text text-muted">Keep your sweet little secrets here</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Statistics -->
+      <div class="row g-3 mb-5">
+        <div class="col-md-4">
+          <div class="text-center p-4 romantic-card">
+            <h2 class="display-5" style="color: #ff6b9d;">💑</h2>
+            <h3 class="h1">2</h3>
+            <p class="text-muted">Beautiful Hearts</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="text-center p-4 romantic-card">
+            <h2 class="display-5" style="color: #ff6b9d;">📸</h2>
+            <h3 class="h1">∞</h3>
+            <p class="text-muted">Precious Moments</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="text-center p-4 romantic-card">
+            <h2 class="display-5" style="color: #ff6b9d;">💕</h2>
+            <h3 class="h1">Forever</h3>
+            <p class="text-muted">Together Always</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline Section -->
+      <div class="mt-5">
+        <h2 class="text-center mb-4">
+          <i class="fas fa-heart" style="color: #ff6b9d;"></i> Our Timeline
+        </h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-marker" style="background-color: #ff6b9d;"></div>
+            <div class="timeline-content romantic-card p-4 mb-3">
+              <h5>First Meeting</h5>
+              <p class="text-muted">The day everything changed</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-marker" style="background-color: #ff6b9d;"></div>
+            <div class="timeline-content romantic-card p-4 mb-3">
+              <h5>First Date</h5>
+              <p class="text-muted">A moment we'll never forget</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-marker" style="background-color: #ff6b9d;"></div>
+            <div class="timeline-content romantic-card p-4 mb-3">
+              <h5>Made It Official</h5>
+              <p class="text-muted">When we promised forever</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-marker" style="background-color: #ff6b9d;"></div>
+            <div class="timeline-content romantic-card p-4">
+              <h5>Today & Always</h5>
+              <p class="text-muted">Creating memories together</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('fragments/footer') %>
